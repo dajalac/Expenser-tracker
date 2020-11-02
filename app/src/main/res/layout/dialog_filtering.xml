@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00897B">
+
+
+        <TextView
+            android:id="@+id/filterBylbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="FILTER BY:"
+            android:textSize="15sp"
+            android:textColor="#F5F5F5"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+
+            android:text=" "
+            android:layout_height="20dp"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/categorylbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Category: "
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinnerCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+
+            android:text=" "
+            android:layout_height="20dp"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/paymentlbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Payment: "
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinnerPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+
+            android:text=" "
+            android:layout_height="20dp"
+            android:layout_width="match_parent"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/fromBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="FROM" />
+
+    <TextView
+        android:id="@+id/initialDatelbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="from"
+        android:textSize="18sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/toBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="TO" />
+
+        <TextView
+            android:id="@+id/finalDatelbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            android:textSize="18sp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+
+            android:text=" "
+            android:layout_height="20dp"
+            android:layout_width="match_parent"/>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="CANCEL"
+            android:textColor="#F50057" />
+
+        <TextView
+            android:id="@+id/applyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:text="APPLY"
+            android:textColor="#F50057" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+
+            android:text=" "
+            android:layout_height="10dp"
+            android:layout_width="match_parent"/>
+    </TableRow>
+
+
+
+
+
+
+</TableLayout>

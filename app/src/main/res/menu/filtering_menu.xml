@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/filterIcon"
+        android:title="Filter"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/clearFilter"
+        android:title="Clear filter"
+        android:visible="false"
+        app:showAsAction="always"/>
+
+</menu>

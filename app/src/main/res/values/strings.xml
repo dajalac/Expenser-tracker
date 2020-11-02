@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Expense Tracker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="welcome_lbl">Welcome!</string>
+    <string name="start_btn">Start</string>
+    <string name="start_lbl">Let\'s do some setup...</string>
+    <string name="configSave_btb">Save</string>
+    <string name="currentBalance_lbl">Balance:</string>
+    <string name="value_lbl">Value $</string>
+    <string name="editConfi_btn">Edit</string>
+    <string name="namelbl">Name</string>
+    <string name="incomelbl">Income :</string>
+    <string name="category_lbl">Category: </string>
+    <string name="debitCardlbl">Debit\nCard</string>
+    <string name="creditCardlbl">Credit\nCard</string>
+    <string name="expense">Expense :</string>
+    <string-array name="spinnerCategories">
+        <item>All</item>
+        <item>Beauty</item>
+        <item>Bills</item>
+        <item>Clothing</item>
+        <item>Education</item>
+        <item>Electronics</item>
+        <item>Gift</item>
+        <item>Grocery</item>
+        <item>Health</item>
+        <item>Insurance</item>
+        <item>Kids</item>
+        <item>Laundry</item>
+        <item>Pet</item>
+        <item>Public\nTransportation</item>
+        <item>Recreation</item>
+        <item>Rent</item>
+        <item>Restaurant</item>
+        <item>Social</item>
+        <item>Sports</item>
+        <item>Tax</item>
+        <item>Utilities</item>
+        <item>Vehicle</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="spinnerPayment">
+        <item>All</item>
+        <item>Cash</item>
+        <item>Cheque</item>
+        <item>Credit\nCard</item>
+        <item>Coupons</item>
+        <item>Debit\nCard</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="spinnerAmount">
+        <item>$0.00 - $100.00</item>
+        <item>$100.00 - $200.00</item>
+        <item>$200.00 - $500.00</item>
+        <item>$500.00 - $1000.00</item>
+        <item>$1000.00 -$2000.00</item>
+        <item>$2000.00 + </item>
+
+
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/ImageButtonCash"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/cash"/>
+
+                <ImageButton
+                    android:id="@+id/ImageButtonCheque"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/money_order"/>
+                <ImageButton
+                    android:id = "@+id/ImageButtonCreditCard"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/credit_card"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/TextViewCash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textAlignment="center"
+                    android:text="Cash"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/TextViewCheque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textAlignment="center"
+                    android:text="Cheque"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/TextViewCreditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/creditCardlbl"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <TextView
+
+                    android:text=" "
+                    android:layout_height="20dp"
+                    android:layout_width="match_parent"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id = "@+id/ImageButtonCoupons"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/coupons"/>
+
+                <ImageButton
+                    android:id = "@+id/ImageButtonDebitCard"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/debit_card"/>
+                <ImageButton
+                    android:id = "@+id/ImageButtonOtherPayments"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/others"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/TextViewCoupons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textAlignment="center"
+                    android:text="Coupons"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/TextViewDebitCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/debitCardlbl"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/TextViewOthersPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textAlignment="center"
+                    android:text="Others"
+                    android:textSize="12sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+
+    </HorizontalScrollView>
+
+</ScrollView>
