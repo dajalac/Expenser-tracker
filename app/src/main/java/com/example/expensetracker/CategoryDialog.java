@@ -238,7 +238,7 @@ public class CategoryDialog extends DialogFragment  {
             @Override
             public void onClick(View v) {
 
-                category = healthTxtView.getText().toString();
+                category = loundryTxtView.getText().toString();
                 sendData();
 
             }

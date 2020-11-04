@@ -93,10 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intentStatistic);
                 break;
 
-            case R.id.nav_target:
-                Intent intentTarget = new Intent(this, SetTargetActivity.class);
-                startActivity(intentTarget);
-                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
