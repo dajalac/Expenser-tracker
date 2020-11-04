@@ -20,6 +20,8 @@ edit and delete all the previous items entered.
 The application is also implemented a summary screen in which the user can select a month and year to check
 the balance and visualize a  bar chart of the expenses on the selected period.
 
+<img src="https://github.com/dajalac/Expenser-tracker/blob/main/app/summary.gif" height="500" /> 
+
 # Built With
 - Java
 - SQLite
