@@ -20,7 +20,8 @@
 
     <TableRow
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
 
         <ImageButton
@@ -61,7 +62,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Beauty"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/TextViewBills"
@@ -70,7 +71,7 @@
             android:layout_marginHorizontal="20dp"
             android:text="Bills"
             android:textAlignment="center"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/TextViewClothing"
@@ -79,7 +80,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Clothing"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
     </TableRow>
 
@@ -138,7 +139,7 @@
                 android:text="Education"
                 android:layout_marginHorizontal="20dp"
                 android:textAlignment="center"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
 
             <TextView
                 android:id="@+id/TextViewEletronics"
@@ -147,7 +148,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:textAlignment="center"
                 android:text="Electronics"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
 
             <TextView
                 android:id="@+id/TextViewGift"
@@ -156,7 +157,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:textAlignment="center"
                 android:text="Gift"
-                android:textSize="12sp"/>
+                android:textSize="10sp"/>
 
         </TableRow>
 
@@ -213,7 +214,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Grocery"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
 
         <TextView
@@ -223,7 +224,7 @@
             android:text="Health"
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewHouse"
@@ -232,7 +233,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="House"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
     </TableRow>
 
@@ -285,7 +286,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Insurance"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewKids"
@@ -294,7 +295,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Kids"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
         <TextView
             android:id="@+id/TextViewLaundry"
             android:layout_width="wrap_content"
@@ -302,7 +303,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Laundry"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
     </TableRow>
     <TableRow
@@ -355,7 +356,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Pet"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewPublicTransport"
@@ -364,7 +365,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Public\nTransportation"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
         <TextView
             android:id="@+id/TextViewEntertainment"
             android:layout_width="wrap_content"
@@ -372,7 +373,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Recreation"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
     </TableRow>
     <TableRow
@@ -424,7 +425,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Rent"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewRestaurant"
@@ -433,7 +434,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Restaurant"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
         <TextView
             android:id="@+id/TextViewSocial"
             android:layout_width="wrap_content"
@@ -441,7 +442,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Social"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
     </TableRow>
     <TableRow
@@ -493,7 +494,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Sports"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewTax"
@@ -502,7 +503,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Tax"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
         <TextView
             android:id="@+id/TextViewTravel"
             android:layout_width="wrap_content"
@@ -510,7 +511,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Travel"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -552,7 +553,8 @@
     </TableRow>
     <TableRow
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:id="@+id/TextViewUtilities"
@@ -561,7 +563,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Utilities"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
 
         <TextView
             android:id="@+id/TextViewVehicle"
@@ -570,7 +572,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Vehicle"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
         <TextView
             android:id="@+id/TextViewOthers"
             android:layout_width="wrap_content"
@@ -578,7 +580,7 @@
             android:layout_marginHorizontal="20dp"
             android:textAlignment="center"
             android:text="Others"
-            android:textSize="12sp"/>
+            android:textSize="10sp"/>
     </TableRow>
 
     </TableLayout>
