@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.expensetracker.database.DadosOpenHelper;
 import com.example.expensetracker.domain.entity.Expenser;
@@ -98,7 +99,7 @@ public class ExpenseRepository {
         sql.append("SELECT SUM(ITEM_VALUE)");
         sql.append("As total ");
         sql.append("FROM EXPENSE ");
-        sql.append("WHERE strftime('%Y',ITEM_DATE) = strftime('%Y',date('now','localtime')) " );
+        sql.append("WHERE strftime('%Y',ITEM_DATE) = strftime('%Y',date('now','localtime'))" );
         sql.append("AND strftime('%m',ITEM_DATE) = strftime('%m',date('now','localtime'))");
 
 
@@ -160,27 +161,38 @@ public class ExpenseRepository {
     }
 
 
-    public float category (String category){
+    public float category (String category, int month, int year){
         StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT SUM(ITEM_VALUE)");
+        sql.append("As sum ");
+        sql.append("FROM EXPENSE ");
+        sql.append("WHERE CATEGORY LIKE ?" );
+        sql.append("AND strftime('%Y',ITEM_DATE) = ?" );
+        sql.append("AND strftime('%m',ITEM_DATE) = ?");
+
+        /**
         sql.append("SELECT SUM(ITEM_VALUE)");
         sql.append("As sum ");
         sql.append("FROM EXPENSE ");
         sql.append("WHERE CATEGORY LIKE ?" );
         sql.append("AND strftime('%Y',ITEM_DATE) = strftime('%Y',date('now','localtime')) " );
         sql.append("AND strftime('%m',ITEM_DATE) = strftime('%m',date('now','localtime'))");
+         **/
 
-        String[] parameter = new String[1];
+        String[] parameter = new String[3];
         parameter[0] = String.valueOf(category);
+        parameter[1] = String.valueOf(year);
+        parameter[2] = String.valueOf(month);
+
 
         Cursor result =   dadosOpenHelper.getConnectionDataBase().rawQuery(sql.toString(),parameter);
-
 
 
         if (result.getCount()>0) {
             result.moveToFirst();
 
             float total = result.getFloat(result.getColumnIndexOrThrow("sum"));
-
             return total;
         }
 

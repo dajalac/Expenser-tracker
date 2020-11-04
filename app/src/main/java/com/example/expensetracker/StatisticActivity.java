@@ -9,6 +9,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,34 +39,79 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DateFormatSymbols;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 
-public class StatisticActivity extends AppCompatActivity {
+public class StatisticActivity extends AppCompatActivity implements GetMonthandYear.OnGetMonthandYear{
 
+    MenuItem selectMonth;
     BarChart chart;
-    LineChart lineChart;
-
-
+    //LineChart lineChart;
     ExpenseRepository expenseRepository;
+
+    private TextView monthTxtView, yearTxtView,valueTxtView, lableTxtView;
     double currentIncome;
+    int month_selected;
+    int year_selected;
+    float totalBalance;
+    Boolean flag= false;
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // to inflate the menu layout
+        getMenuInflater().inflate(R.menu.month_menu, menu);
+        selectMonth = menu.findItem(R.id.filterIcon);
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistic);
+        setContentView(R.layout.activity_summary);
 
         setBarName(); // set bar name
         setActionBarBtn(); //set bar action
         createVariables();
         createBarchart();
-        showAcumulativeGraph();
+        showBalance();
 
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == R.id.filterIcon){
+
+            GetMonthandYear getMonthandYear= new GetMonthandYear();
+            getMonthandYear.show(getSupportFragmentManager(), "filter expense");
+
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+    @Override
+    public void setFilter(int month, int year) {
+
+
+        month_selected = month;
+        year_selected = year;
+        flag = true;
+        clearData();
+        createBarchart();
+        showBalance();
 
     }
 
@@ -81,8 +128,14 @@ public class StatisticActivity extends AppCompatActivity {
     private void createVariables(){
 
         chart = findViewById(R.id.barChart);
-        lineChart = findViewById(R.id.lineChart);
+        //lineChart = findViewById(R.id.lineChart);
+        monthTxtView =findViewById(R.id.monthTxtView);
+        yearTxtView=findViewById(R.id.yearTxtView);
+        valueTxtView=findViewById(R.id.amountTxtView);
+        lableTxtView = findViewById(R.id.valueTxtView);
 
+        Log.d("selected m", String.valueOf(month_selected));
+        Log.d("selected y", String.valueOf(year_selected));
 
 
         expenseRepository =new ExpenseRepository (this);
@@ -95,6 +148,21 @@ public class StatisticActivity extends AppCompatActivity {
 
     private void createBarchart(){
 
+
+        if(!flag){
+            final Calendar c = Calendar.getInstance();
+            month_selected = c.get(Calendar.MONTH) +1 ;
+            year_selected =c.get(Calendar.YEAR);
+        }
+
+
+        Log.d("selected mes", String.valueOf(month_selected));
+        Log.d("selected year", String.valueOf(year_selected));
+
+
+
+        totalBalance = 0.0f;
+
         // create 24 possible barsets
         BarDataSet set1,set2,set3,set4,set5,set6,set7,set8,set9,set10,set11,set12,set13,set14,
                 set15,set16,set17,set18,set19,set20,set21,set22,set23,set24;
@@ -103,198 +171,224 @@ public class StatisticActivity extends AppCompatActivity {
 
         int i = 0;
        // ArrayList<BarEntry> entries = new ArrayList<>();
-        if(expenseRepository.category("Beauty") != 0) {
+        if(expenseRepository.category("Beauty",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Beauty")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Beauty",month_selected,year_selected)));
             set1= new BarDataSet(entries, "Beauty");
             set1.setColor(Color.parseColor("#FFEBEE"));
             dataSets.add(set1);
+            totalBalance+= expenseRepository.category("Beauty",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Bills") != 0) {
+        if(expenseRepository.category("Bills",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Bills")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Bills",month_selected,year_selected)));
             set2= new BarDataSet(entries, "Bills");
             set2.setColor(Color.parseColor("#EDE7F6"));
             dataSets.add(set2);
+            totalBalance+= expenseRepository.category("Bills",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Clothing") != 0) {
+        if(expenseRepository.category("Clothing",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Clothing")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Clothing",month_selected,year_selected)));
             set3= new BarDataSet(entries, "Clothing");
             set3.setColor(Color.parseColor("#4CAF50"));
             dataSets.add(set3);
+            totalBalance+= expenseRepository.category("Clothing",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Education") != 0) {
+        if(expenseRepository.category("Education",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Education")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Education",month_selected,year_selected)));
             set4= new BarDataSet(entries, "Education");
             set4.setColor(Color.parseColor("#FF6F00"));
             dataSets.add(set4);
+            totalBalance+= expenseRepository.category("Education",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Electronics") != 0) {
+        if(expenseRepository.category("Electronics",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Electronics")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Electronics",month_selected,year_selected)));
             set5= new BarDataSet(entries, "Electronics");
             set5.setColor(Color.parseColor("#FFE57F"));
             dataSets.add(set5);
+            totalBalance+= expenseRepository.category("Electronics",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Gift") != 0) {
+        if(expenseRepository.category("Gift",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Gift")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Gift",month_selected,year_selected)));
             set6= new BarDataSet(entries, "Gift");
             set6.setColor(Color.parseColor("#F4511E"));
             dataSets.add(set6);
+            totalBalance+= expenseRepository.category("Gift",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Grocery") != 0) {
+        if(expenseRepository.category("Grocery",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Grocery")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Grocery",month_selected,year_selected)));
             set7= new BarDataSet(entries, "Grocery");
             set7.setColor(Color.parseColor("#D7CCC8"));
             dataSets.add(set7);
+            totalBalance+= expenseRepository.category("Grocery",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Health") != 0) {
+        if(expenseRepository.category("Health",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Health")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Health",month_selected,year_selected)));
             set8= new BarDataSet(entries, "Health");
             set8.setColor(Color.parseColor("#FF5722"));
             dataSets.add(set8);
+            totalBalance+= expenseRepository.category("Health",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("House") != 0) {
+        if(expenseRepository.category("House",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("House")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("House",month_selected,year_selected)));
             set9= new BarDataSet(entries, "House");
             set9.setColor(Color.parseColor("#424242"));
             dataSets.add(set9);
+            totalBalance+= expenseRepository.category("House",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Insurance") != 0) {
+        if(expenseRepository.category("Insurance",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Insurance")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Insurance",month_selected,year_selected)));
             set10= new BarDataSet(entries, "Insurance");
             set10.setColor(Color.parseColor("#90A4AE"));
             dataSets.add(set10);
+            totalBalance+= expenseRepository.category("Insurance",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Kids") != 0) {
+        if(expenseRepository.category("Kids",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Kids")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Kids",month_selected,year_selected)));
             set11= new BarDataSet(entries, "Kids");
             set11.setColor(Color.parseColor("#FFFFFF"));
+            totalBalance+= expenseRepository.category("Kids",month_selected,year_selected);
             dataSets.add(set11);
             i++;
         }
-        if(expenseRepository.category("Laundry") != 0) {
+        if(expenseRepository.category("Laundry",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Laundry")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Laundry",month_selected,year_selected)));
             set12= new BarDataSet(entries, "Laundry");
             set12.setColor(Color.parseColor("#8D6E63"));
             dataSets.add(set12);
+            totalBalance+= expenseRepository.category("Laundry",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Pet") != 0) {
+        if(expenseRepository.category("Pet",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Pet")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Pet",month_selected,year_selected)));
             set13= new BarDataSet(entries, "Pet");
             set13.setColor(Color.parseColor("#D81B60"));
             dataSets.add(set13);
+            totalBalance+= expenseRepository.category("Pet",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Public Transportation") != 0) {
+        if(expenseRepository.category("Public Transportation",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Public Transportation")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Public Transportation",month_selected,year_selected)));
             set14= new BarDataSet(entries, "Public Transportation");
             set14.setColor(Color.parseColor("#827717"));
             dataSets.add(set14);
+            totalBalance+= expenseRepository.category("Public Transportation",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Recreation") != 0) {
+        if(expenseRepository.category("Recreation",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Recreation")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Recreation",month_selected,year_selected)));
             set15= new BarDataSet(entries, "Recreation");
             set15.setColor(Color.parseColor("#880E4F"));
             dataSets.add(set15);
+            totalBalance+= expenseRepository.category("Recreation",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Rent") != 0) {
+        if(expenseRepository.category("Rent",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Rent")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Rent",month_selected,year_selected)));
             set16= new BarDataSet(entries, "Rent");
             set16.setColor(Color.parseColor("#4A148C"));
             dataSets.add(set16);
+            totalBalance+= expenseRepository.category("Rent",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Restaurant") != 0) {
+        if(expenseRepository.category("Restaurant",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Restaurant")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Restaurant",month_selected,year_selected)));
             set17= new BarDataSet(entries, "Restaurant");
             set17.setColor(Color.parseColor("#D50000"));
             dataSets.add(set17);
+            totalBalance+= expenseRepository.category("Restaurant",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Social") != 0) {
+        if(expenseRepository.category("Social",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Social")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Social",month_selected,year_selected)));
             set18= new BarDataSet(entries, "Social");
             set18.setColor(Color.parseColor("#00E676"));
             dataSets.add(set18);
+            totalBalance+= expenseRepository.category("Social",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Sports") != 0) {
+        if(expenseRepository.category("Sports",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Sports")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Sports",month_selected,year_selected)));
             set19= new BarDataSet(entries, "Sports");
             set19.setColor(Color.parseColor("#FFE0B2"));
             dataSets.add(set19);
+            totalBalance+= expenseRepository.category("Sports",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Tax") != 0) {
+        if(expenseRepository.category("Tax",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Tax")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Tax",month_selected,year_selected)));
             set20= new BarDataSet(entries, "Tax");
             set20.setColor(Color.parseColor("#01579B"));
             dataSets.add(set20);
+            totalBalance+= expenseRepository.category("Tax",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Travel") != 0) {
+        if(expenseRepository.category("Travel",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Travel")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Travel",month_selected,year_selected)));
             set21= new BarDataSet(entries, "Travel");
             set21.setColor(Color.parseColor("#FF1744"));
             dataSets.add(set21);
+            totalBalance+= expenseRepository.category("Travel",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Utilities") != 0) {
+        if(expenseRepository.category("Utilities",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Utilities")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Utilities",month_selected,year_selected)));
             set22= new BarDataSet(entries, "Utilities");
             set22.setColor(Color.parseColor("#5C6BC0"));
             dataSets.add(set22);
+            totalBalance+= expenseRepository.category("Utilities",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Vehicle") != 0) {
+        if(expenseRepository.category("Vehicle",month_selected,year_selected) != 0) {
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1, expenseRepository.category("Vehicle")));
+            entries.add(new BarEntry(i+1, expenseRepository.category("Vehicle",month_selected,year_selected)));
             set23= new BarDataSet(entries, "Vehicle");
             set23.setColor(Color.parseColor("#C0CA33"));
             dataSets.add(set23);
+            totalBalance+= expenseRepository.category("Vehicle",month_selected,year_selected);
             i++;
         }
-        if(expenseRepository.category("Others") != 0){
+        if(expenseRepository.category("Others",month_selected,year_selected) != 0){
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(i+1,expenseRepository.category("Others")));
+            entries.add(new BarEntry(i+1,expenseRepository.category("Others",month_selected,year_selected)));
             set24= new BarDataSet(entries, "Others");
             set24.setColor(Color.parseColor("#212121"));
             dataSets.add(set24);
+            totalBalance+= expenseRepository.category("Others",month_selected,year_selected);
             i++;
         }
+
+        Log.d("total balance", String.valueOf(totalBalance));
 
         BarData data = new BarData(dataSets);
         chart.setData(data);
@@ -348,6 +442,7 @@ public class StatisticActivity extends AppCompatActivity {
 
     }
 
+    /**
     public void showAcumulativeGraph() {
 
         ArrayList<Float> valuesAcumulates = expenseRepository.retriveDaysAmount();
@@ -419,14 +514,37 @@ public class StatisticActivity extends AppCompatActivity {
 
 
 
+    }
+     **/
 
 
 
+    public void showBalance(){
 
+        String monthDisplay = new DateFormatSymbols().getMonths()[month_selected-1];
+        monthTxtView.setText(monthDisplay);
+        yearTxtView.setText(String.valueOf(year_selected));
 
+        // format value currence
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        String currency = format.format(totalBalance);
+        valueTxtView.setText(currency);
+
+    }
+
+    public void clearData(){
+
+        try {
+            chart.clearValues();
+            chart.clear();
+        }
+        catch (Exception e){
+            Log.d("exeption",String.valueOf(e));
+        }
 
     }
 
 }
+
 
 

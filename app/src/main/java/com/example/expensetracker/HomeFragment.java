@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +49,6 @@ public class HomeFragment extends Fragment {
     //variables
     private double currentIncome;
     private double currentBalance,expenseTotal;
-
 
 
 
@@ -106,6 +107,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void expenseDeduction(){
+
 
         ExpenseRepository expenseRepository =new ExpenseRepository (getActivity());
         expenseTotal= expenseRepository.retriveTotalExpense();

@@ -32,7 +32,7 @@ public class FilterExpense extends DialogFragment {
     public OnFilterExpense onFilterExpense;
 
     //tags
-    private static final String TAG = "FinterExpense";
+    private static final String TAG = "FilterExpense";
 
     // widgets
     TextView filterBylbl, categorylbl, amountlbl,paymentlbl, initialDatelbl,

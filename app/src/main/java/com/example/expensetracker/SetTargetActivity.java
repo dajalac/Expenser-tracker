@@ -114,7 +114,7 @@ public class SetTargetActivity extends AppCompatActivity implements  PickTargetD
 
         ExpenseRepository repository = new ExpenseRepository(this);
 
-        double temporary = (double) repository.category(categorySelected);
+        double temporary = (double) repository.category(categorySelected,10,2020);
 
         double expensePercent = temporary * 100 / targetAmount;
         int expenseInteger = (int) expensePercent;
@@ -122,7 +122,7 @@ public class SetTargetActivity extends AppCompatActivity implements  PickTargetD
 
         List<TargetData> data = new ArrayList<>();
 
-        data.add(new TargetData(categorySelected, targetAmount, repository.category(categorySelected),expenseInteger));
+        data.add(new TargetData(categorySelected, targetAmount, repository.category(categorySelected,10,2020),expenseInteger));
 
 
         flag=false;
