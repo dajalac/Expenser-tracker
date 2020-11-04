@@ -144,13 +144,22 @@ public class HomeFragment extends Fragment {
     private void setPieChart (){
 
         float floatBalance = (float) currentBalance;
-        //float floatIncome = (float) currentIncome;
+        float floatIncome = (float) currentIncome;
         float floatExpense = (float) expenseTotal;
 
         ArrayList<PieEntry> value = new ArrayList<PieEntry>();
-        //value.add(new PieEntry(floatIncome,"Income"));
-        value.add(new PieEntry(floatBalance,"Income"));
-        value.add(new PieEntry(floatExpense,"Expense"));
+
+        //It is needed in case the balance is negative
+        if (floatExpense >= floatIncome){
+
+            value.add(new PieEntry(floatExpense,"Expense"));
+        }
+        else {
+
+            value.add(new PieEntry(floatExpense, "Expense"));
+            value.add(new PieEntry(floatBalance, "Income"));
+
+        }
 
         PieDataSet pieDataSet = new PieDataSet(value, "");
         PieData pieData = new PieData(pieDataSet);
@@ -179,7 +188,7 @@ public class HomeFragment extends Fragment {
 
 
         // set pie chart color
-       pieDataSet.setColors(Color.parseColor("#00796B"),Color.parseColor("#B71C1C"));
+       pieDataSet.setColors(Color.parseColor("#B71C1C"),Color.parseColor("#00796B"));
 
 
        // set center text
