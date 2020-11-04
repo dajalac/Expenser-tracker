@@ -14,6 +14,9 @@ height="500" />
 The user is also able to select among several expenses categories and payment types and as well search,
 edit and delete all the previous items entered.
 
+<img src="https://github.com/dajalac/Expenser-tracker/blob/main/app/filter.gif" height="500" /> 
+
+
 The application is also implemented a summary screen in which the user can select a month and year to check
 the balance and visualize a  bar chart of the expenses on the selected period.
 
