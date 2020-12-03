@@ -138,6 +138,7 @@ public class FilterExpense extends DialogFragment {
         int firstDayOfMonth = Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH);
         int lastDayOfMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 
+
         // FORMATE THE DATE TO BE DISPLAY
         String setFromLabelTexts = firstDayOfMonth+"-"+ toString().valueOf(currentMonth+1)+"-"+toString().valueOf(currentYear);
         String setToLabelTexts = lastDayOfMonth+"-"+ toString().valueOf(currentMonth+1)+"-"+toString().valueOf(currentYear);
@@ -178,7 +179,6 @@ public class FilterExpense extends DialogFragment {
             }
 
         }, fromYear = c.get(Calendar.YEAR), fromMonth= c.get(Calendar.MONTH), fromDay = c.get(Calendar.DAY_OF_MONTH));
-
         fromDate.show();
 
 

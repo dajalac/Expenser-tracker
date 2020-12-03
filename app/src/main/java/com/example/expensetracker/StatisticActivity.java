@@ -40,6 +40,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class StatisticActivity extends AppCompatActivity implements GetMonthandY
 
     private TextView monthTxtView, yearTxtView,valueTxtView, lableTxtView;
     double currentIncome;
-    int month_selected;
+    String month_selected;
     int year_selected;
     float totalBalance;
     Boolean flag= false;
@@ -103,7 +104,7 @@ public class StatisticActivity extends AppCompatActivity implements GetMonthandY
 
     }
     @Override
-    public void setFilter(int month, int year) {
+    public void setFilter(String month, int year) {
 
 
         month_selected = month;
@@ -134,9 +135,6 @@ public class StatisticActivity extends AppCompatActivity implements GetMonthandY
         valueTxtView=findViewById(R.id.amountTxtView);
         lableTxtView = findViewById(R.id.valueTxtView);
 
-        Log.d("selected m", String.valueOf(month_selected));
-        Log.d("selected y", String.valueOf(year_selected));
-
 
         expenseRepository =new ExpenseRepository (this);
 
@@ -151,7 +149,7 @@ public class StatisticActivity extends AppCompatActivity implements GetMonthandY
 
         if(!flag){
             final Calendar c = Calendar.getInstance();
-            month_selected = c.get(Calendar.MONTH) +1 ;
+            month_selected = String.valueOf(c.get(Calendar.MONTH) +1) ;
             year_selected =c.get(Calendar.YEAR);
         }
 
@@ -521,7 +519,9 @@ public class StatisticActivity extends AppCompatActivity implements GetMonthandY
 
     public void showBalance(){
 
-        String monthDisplay = new DateFormatSymbols().getMonths()[month_selected-1];
+        int monthToDisplay = Integer.parseInt(month_selected)-1;
+
+        String monthDisplay = new DateFormatSymbols().getMonths()[monthToDisplay];
         monthTxtView.setText(monthDisplay);
         yearTxtView.setText(String.valueOf(year_selected));
 

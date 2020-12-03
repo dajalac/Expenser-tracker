@@ -12,12 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class GetMonthandYear extends DialogFragment {
 
     public interface OnGetMonthandYear{
-        void setFilter(int month, int year);
+        void setFilter(String month, int year);
     }
 
     public OnGetMonthandYear onGetMonthandYear;
@@ -43,7 +44,8 @@ public class GetMonthandYear extends DialogFragment {
 
         monthPicker.setMinValue(1);
         monthPicker.setMaxValue(12);
-        monthPicker.setValue(cal.get(Calendar.MONTH));
+        monthPicker.setValue(cal.get(Calendar.MONTH)
+        +1);
 
         final int year = cal.get(Calendar.YEAR);
         yearPicker.setMinValue(year);
@@ -58,9 +60,12 @@ public class GetMonthandYear extends DialogFragment {
                        int  year = yearPicker.getValue();
                        int month = monthPicker.getValue();
 
+                       DecimalFormat formatter = new DecimalFormat("00");
+                       String mFormatted = formatter.format(month); // to convert month to two digits
+
 
                        //listener.onDateSet(null,year, month, day);
-                        onGetMonthandYear.setFilter(month,year);
+                        onGetMonthandYear.setFilter(mFormatted,year);
                         GetMonthandYear.this.getDialog().cancel();
 
                     }

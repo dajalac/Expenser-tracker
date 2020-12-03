@@ -161,7 +161,7 @@ public class ExpenseRepository {
     }
 
 
-    public float category (String category, int month, int year){
+    public float category (String category, String month, int year){
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT SUM(ITEM_VALUE)");
@@ -185,9 +185,10 @@ public class ExpenseRepository {
         parameter[1] = String.valueOf(year);
         parameter[2] = String.valueOf(month);
 
+        //Log.d("selected m");
+
 
         Cursor result =   dadosOpenHelper.getConnectionDataBase().rawQuery(sql.toString(),parameter);
-
 
         if (result.getCount()>0) {
             result.moveToFirst();
